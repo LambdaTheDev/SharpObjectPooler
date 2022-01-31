@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <RootNamespace>LambdaTheDev.SharpObjectPooler</RootNamespace>
+        <PackageVersion>2.0.0</PackageVersion>
+        <Title>SharpObjectPooler</Title>
+        <Authors>LambdaTheDev</Authors>
+        <Copyright>LambdaTheDev</Copyright>
+        <PackageProjectUrl>https://github.com/LambdaTheDev/SharpObjectPooler</PackageProjectUrl>
+        <PackageLicenseUrl>MIT</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/LambdaTheDev/SharpObjectPooler</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>reuse,pool,pooling,high,performance,object</PackageTags>
+    </PropertyGroup>
+
+</Project>

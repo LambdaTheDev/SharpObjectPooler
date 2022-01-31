@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpObjectPooler", "SharpObjectPooler\SharpObjectPooler.csproj", "{D200E455-EAAC-42C9-A039-18F5F4414C45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpObjectPooler.Tests", "SharpObjectPooler.Tests\SharpObjectPooler.Tests.csproj", "{5F87D96F-A70B-4148-A8F6-01C71D9DF323}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D200E455-EAAC-42C9-A039-18F5F4414C45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D200E455-EAAC-42C9-A039-18F5F4414C45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D200E455-EAAC-42C9-A039-18F5F4414C45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D200E455-EAAC-42C9-A039-18F5F4414C45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F87D96F-A70B-4148-A8F6-01C71D9DF323}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F87D96F-A70B-4148-A8F6-01C71D9DF323}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F87D96F-A70B-4148-A8F6-01C71D9DF323}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F87D96F-A70B-4148-A8F6-01C71D9DF323}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

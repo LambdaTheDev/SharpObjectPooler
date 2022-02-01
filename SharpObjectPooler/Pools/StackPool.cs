@@ -90,11 +90,11 @@ namespace LambdaTheDev.SharpObjectPooler.Pools
                 successfulRents = _threadSafePool.TryPopRange(outputArray, offset, count);
                 if (successfulRents < count)
                 {
-                    for(int i = 0; i < successfulRents - count; i++)
+                    for(int i = 0; i < count - successfulRents; i++)
                         outputArray[successfulRents + i] = new T();
                 }
 
-                return successfulRents;
+                return count;
             }
 
             while (_pool.TryPop(out T item) && successfulRents <= count)
@@ -105,11 +105,11 @@ namespace LambdaTheDev.SharpObjectPooler.Pools
 
             if (successfulRents < count)
             {
-                for(int i = 0; i < successfulRents - count; i++)
+                for(int i = 0; i < count - successfulRents; i++)
                     outputArray[successfulRents + i] = new T();
             }
 
-            return successfulRents;
+            return count;
         }
 
         public int ReturnBulk(T[] inputArray, int offset, int count)

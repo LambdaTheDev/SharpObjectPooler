@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace LambdaTheDev.SharpObjectPooler
 {
     // Interface for pools that support renting/returning multiple objects at once

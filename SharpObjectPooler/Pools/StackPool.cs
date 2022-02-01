@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using LambdaTheDev.SharpObjectPooler.Utils;
 
+#if NETSTANDARD2_0
+using LambdaTheDev.SharpObjectPooler.Extensions;
+#endif
+
 namespace LambdaTheDev.SharpObjectPooler.Pools
 {
     // Pool implementation based on (Concurrent)Stack<T> and new() object generator

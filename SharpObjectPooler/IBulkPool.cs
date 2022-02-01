@@ -10,8 +10,5 @@ namespace LambdaTheDev.SharpObjectPooler
         
         // Puts objects from inputArray, from offset too count into a pool. Returns count of objects that were successfully returned
         int ReturnBulk(T[] inputArray, int offset, int count);
-        
-        // Puts objects from IEnumerable into a pool. Returns how much objects were successfully pooled
-        int ReturnBulk(IEnumerable<T> items);
     }
 }

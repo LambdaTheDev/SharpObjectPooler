@@ -1,9 +1,7 @@
-using System;
-using LambdaTheDev.SharpObjectPooler;
 using LambdaTheDev.SharpObjectPooler.Pools;
 using NUnit.Framework;
 
-namespace SharpObjectPooler.Tests.StackPool
+namespace LambdaTheDev.SharpObjectPooler.Tests.StackPool
 {
     [TestFixture]
     public class StackPoolTests

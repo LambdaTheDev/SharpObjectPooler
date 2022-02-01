@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace LambdaTheDev.SharpObjectPooler.Extensions
 {
@@ -7,6 +8,7 @@ namespace LambdaTheDev.SharpObjectPooler.Extensions
     {
 #if NETSTANDARD2_0
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool TryPop<T>(this Stack<T> stack, out T item)
         {
             if (stack.Count > 0)

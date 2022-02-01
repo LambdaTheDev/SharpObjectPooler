@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <RootNamespace>LambdaTheDev.SharpObjectPooler</RootNamespace>
-        <PackageVersion>0.0.1</PackageVersion>
+        <PackageVersion>0.0.2</PackageVersion>
         <Title>SharpObjectPooler</Title>
         <Authors>LambdaTheDev</Authors>
         <Copyright>LambdaTheDev</Copyright>

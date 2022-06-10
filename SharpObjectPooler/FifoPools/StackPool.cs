@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using LambdaTheDev.SharpObjectPooler.Extensions;
 using LambdaTheDev.SharpObjectPooler.Utils;
 
-namespace LambdaTheDev.SharpObjectPooler.Fifo
+namespace LambdaTheDev.SharpObjectPooler.FifoPools
 {
     // A FIFO pool implementation backed by (Concurrent)Stack collection
     public sealed class StackPool<T> : IBulkObjectPool<T>

@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <RootNamespace>LambdaTheDev.SharpObjectPooler</RootNamespace>
-        <PackageVersion>0.0.2</PackageVersion>
+        <PackageVersion>0.1.0</PackageVersion>
         <Title>SharpObjectPooler</Title>
         <Authors>LambdaTheDev</Authors>
         <Copyright>LambdaTheDev</Copyright>
@@ -12,6 +12,7 @@
         <RepositoryType>git</RepositoryType>
         <PackageTags>reuse,pool,pooling,high,performance,object</PackageTags>
         <TargetFrameworks>netstandard2.0;netstandard2.1;netcoreapp5.0</TargetFrameworks>
+        <Description>Object pooling (re-using) library for .NET Standard 2.0 (Unity included) and above.</Description>
     </PropertyGroup>
 
 </Project>

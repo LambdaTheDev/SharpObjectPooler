@@ -8,7 +8,8 @@ namespace LambdaTheDev.SharpObjectPooler.Tests
     public class StackPoolTests
     {
         private readonly IBulkObjectPool<int> _notThreadSafePool = new StackPool<int>(Generator, 100);
-        private readonly IBulkObjectPool<int> _threadSafePool = new StackPool<int>(Generator, 100, -1, true);
+        private readonly IBulkObjectPool<int> _threadSafePool = new StackPool<int>(Generator, 100, -1, new AdvancedPoolOptions<int>(true));
+        
         private static int Generator() => 0;
 
 

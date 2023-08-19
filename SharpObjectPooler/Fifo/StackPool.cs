@@ -12,10 +12,11 @@ namespace LambdaTheDev.SharpObjectPooler.Fifo
         // Pool collections
         private readonly Stack<T> _pool;
         private readonly ConcurrentStack<T> _threadSafePool;
-        
+
         // Method used to generate new pool items
         private readonly Func<T> _generator;
-        
+        private readonly AdvancedPoolOptions<T> _options;
+
         // Determines if Stack or ConcurrentStack was used
         private readonly bool _isThreadSafe;
 
@@ -23,27 +24,28 @@ namespace LambdaTheDev.SharpObjectPooler.Fifo
         public int MaxCapacity { get; }
 
         
-        public StackPool(Func<T> generator, int initialCapacity, int maxCapacity = -1, bool isThreadSafe = false)
+        public StackPool(Func<T> generator, int initialCapacity, int maxCapacity = -1, AdvancedPoolOptions<T> options = default)
         {
             // Validate arguments
             PoolArgsValidators.ValidateGenerator(generator);
             PoolArgsValidators.ValidateCapacity(initialCapacity, maxCapacity);
             
             // Initialize pool
-            if (isThreadSafe) _threadSafePool = new ConcurrentStack<T>();
+            if (options.IsThreadSafe) _threadSafePool = new ConcurrentStack<T>();
             else _pool = new Stack<T>(initialCapacity);
             
             // Initialize initial capacity
             for (int i = 0; i < initialCapacity; i++)
             {
-                if(isThreadSafe) _threadSafePool.Push(generator.Invoke());
+                if(options.IsThreadSafe) _threadSafePool.Push(generator.Invoke());
                 else _pool.Push(generator.Invoke());
             }
             
             // Set fields
             MaxCapacity = maxCapacity;
             _generator = generator;
-            _isThreadSafe = isThreadSafe;
+            _options = options;
+            _isThreadSafe = options.IsThreadSafe;
         }
         
         public T Rent()
@@ -51,11 +53,15 @@ namespace LambdaTheDev.SharpObjectPooler.Fifo
             T item;
             if (_isThreadSafe) { if (!_threadSafePool.TryPop(out item)) item = _generator.Invoke(); }
             else { if (!_pool.FrameworkSafeTryPop(out item)) item = _generator.Invoke(); }
+            
+            _options.OnRent?.Invoke(item);
             return item;
         }
 
         public void Return(T item)
         {
+            _options.OnReturn?.Invoke(item);
+            
             if (MaxCapacity != -1 && Count >= MaxCapacity) return;
             if(_isThreadSafe) _threadSafePool.Push(item);
             else _pool.Push(item);
@@ -81,12 +87,25 @@ namespace LambdaTheDev.SharpObjectPooler.Fifo
             for (int i = outputArray.Offset + successfulRents; i < itemsToGenerate; i++)
                 outputArray.Array[i] = _generator.Invoke();
 
+            // Invoke callback
+            if (_options.OnRent != null)
+            {
+                for (int i = outputArray.Offset; i < outputArray.Offset + successfulRents; i++)
+                    _options.OnRent.Invoke(outputArray.Array[i]);
+            }
+            
             return outputArray.Count;
         }
 
         public void ReturnBulk(ArraySegment<T> inputArray)
         {
             if (inputArray.Array == null) return;
+
+            if (_options.OnReturn != null)
+            {
+                for (int i = inputArray.Offset; i < inputArray.Offset + inputArray.Count; i++)
+                    _options.OnRent.Invoke(inputArray.Array[i]);
+            }
 
             int remainingSpace = MaxCapacity == -1 ? inputArray.Count : MaxCapacity - Count;
             int itemsToReturn = remainingSpace <= inputArray.Count ? remainingSpace : inputArray.Count;
